@@ -18,9 +18,27 @@
     <ClInclude Include="std.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\COURSE WORK\COURSE WORK\Vseosvita_2_0.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\COURSE WORK\COURSE WORK\Test.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\COURSE WORK\COURSE WORK\_LIB.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\COURSE WORK\COURSE WORK\Vseosvita_2_0.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\COURSE WORK\COURSE WORK\Header.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\COURSE WORK\COURSE WORK\COURSE WORK.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
