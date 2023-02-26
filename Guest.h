@@ -1,18 +1,46 @@
 #pragma once
 #include "std.h"
-class Guest
+
+
+class Bio
 {
-private:
 	string name;
 	string surname;
 	string last_name;
-	string adress; 
-	int phone;
 public:
-	Guest(const string& name, const string& surname, const string& last_name,const string& adress ,int phone);
-
+	void setName(const string& name);
+	void setSurname(const string& surname);
+	void setLastName(const string& last_name);
 };
 
-Guest::Guest(const string& name, const string& surname, const string& last_name,const string& adress, int phone)
-	:name(name), surname(surname),  last_name(last_name), adress(adress), phone(phone)
-{}
+class Phone
+{
+	string phone;
+	void check_num(const string num);
+public:
+	void setPhone(const string& num);
+};
+
+class Adress
+{
+	string adress;
+public:
+	void setAdress(const string adr);
+};
+
+class Guest
+{
+protected:
+	vector<tuple<Bio, Phone, Adress>> guests;
+public:
+	Guest(Bio bio, Phone phone,Adress adress);
+	void print()const;
+	string getName()const;
+	string getSurname()const;
+	string getLastName()const;
+	void setName(const string& name);
+	void setSurname(const string& surname);
+	void setLastName(const string& last_name);
+	void setAdress(const string adr);
+	void setPhone(const string& num);
+};

@@ -1,18 +1,17 @@
 #include "std.h"
 #pragma once
-template<typename T>
+#include "Guest.h"
+
 class Admin
 {
 private:
 	string login;
 	string password;
+	void check_pass(const string& pass);
+	void check_login(const string& log);
 public:
-	Admin(const string& login, const string& password);
-	void deleteGuest(const T& guest);
-};
-
-template<typename T>
-inline Admin<T>::Admin(const string& login, const string& password)
-	:login(login), password(password)
-{
+	Admin() = default;
+	void set_login();
+	void set_password();
+	void changeGuest(const Guest& guest);
 }
