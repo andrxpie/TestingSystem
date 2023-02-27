@@ -27,6 +27,6 @@ void Admin::loginAd()
 	else
 	{
 		cin >> loginEB;
-		bcd >> tmp;
+		bcd >> tmp;  
 	}
 }
