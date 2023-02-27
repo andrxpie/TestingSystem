@@ -134,7 +134,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
-    <ClCompile Include="ConsoleApplication41.cpp" />
     <ClCompile Include="Guest.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>

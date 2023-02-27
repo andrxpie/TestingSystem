@@ -1,15 +1,13 @@
 #pragma once
 #include "LIB.h"
-class Admin
-{
 
-	string loginAd, passwordAd;
-
-protected:
-
+class Admin {
 public:
-	void RegistrAd();
-	void loginAd();
-
-
+	void registerAdmin();
+	void saveLPToFile();
+	bool checkTrueSize(const str& login, int left, int right);
+	bool checkFirstSymbol(const str& login);
+	bool checkTrueLogin(str& login);
+private:
+	string loginAdm, passwordAdm;
 };
