@@ -38,7 +38,7 @@ void Admin::loginAdmin() {
 	cout << " login: "; str login; cin >> login;
 	while (checkLogin(login) == false) { system("cls"); cerr << " incorrect login: not found, re-enter: "; cin >> login; }
 
-	int cMistakes = 0;
+	system("cls");
 	cout << " password: "; str password; cin >> password;
 	for (size_t i = 0; i < 3; i++) {
 		if (checkPassword(password) == false) { system("cls"); cerr << " incorrect password: not match, re-enter (" << i + 1 << " tryes left): " ; cin >> password; }
