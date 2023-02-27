@@ -8,11 +8,13 @@ public:
 	bool checkTrueLogin(str& login) const;
 	bool getIsAdmin() const;
 	bool checkLogin(const str& login) const;
+	bool checkPassword(const str& password) const;
 
 	void registerAdmin();
 	void loginAdmin();
 	void saveLPToFile(const str& login, const str& password) const;
+	void adminTools();
 private:
-	string loginAdm, passwordAdm;
+	str loginAdm, passwordAdm;
 	bool isAdmin = false;
 };

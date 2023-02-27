@@ -38,6 +38,7 @@ int main() {
 			} else logIn = 2;
 			switch (logIn) {
 			case 1:
+				system("cls");
 				admin.loginAdmin();
 				break;
 			case 2:

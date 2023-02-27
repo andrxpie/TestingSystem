@@ -6,12 +6,13 @@ bool Admin::checkTrueLogin(str& login) const { if (checkTrueSize(login, 3, 16) =
 bool Admin::getIsAdmin() const { return isAdmin; }
 
 bool Admin::checkLogin(const str& login) const {
-	ifstream checkL("Admin.txt");
-	string tmp;
-	checkL >> tmp;
-	cout << " tmp: " << tmp << "\n";
-	checkL.close();
-	return true;
+	ifstream checkL("Admin.txt"); string tmp; checkL >> tmp; checkL.close();
+	if (login == tmp) return true; return false;
+}
+
+bool Admin::checkPassword(const str& password) const {
+	ifstream checkP("Admin.txt"); string tmp; checkP >> tmp >> tmp; checkP.close();
+	if (password == tmp) return true; return false;
 }
 
 void Admin::registerAdmin() {
@@ -29,15 +30,25 @@ void Admin::registerAdmin() {
 	cout << " password: " << passwordAdm << "\n *save it somewhere\n\n";
 	isAdmin = true;
 
-	string hashLogin, hashPassword;
+	str hashLogin, hashPassword;
 	saveLPToFile(hashLogin, hashPassword);
 }
 
 void Admin::loginAdmin() {
 	cout << " login: "; str login; cin >> login;
-	while (checkLogin(login) == false) {
-		cerr << " incorrect login: not found, re-enter: "; cin >> login;
+	while (checkLogin(login) == false) { system("cls"); cerr << " incorrect login: not found, re-enter: "; cin >> login; }
+
+	int cMistakes = 0;
+	cout << " password: "; str password; cin >> password;
+	for (size_t i = 0; i < 3; i++) {
+		if (checkPassword(password) == false) { system("cls"); cerr << " incorrect password: not match, re-enter (" << i + 1 << " tryes left): " ; cin >> password; }
+		else { adminTools(); break; }
 	}
 }
 
 void Admin::saveLPToFile(const str& login, const str& password) const { ofstream fileIt("Admin.txt"); fileIt << loginAdm << "\n"; fileIt << passwordAdm; fileIt.close(); }
+
+void Admin::adminTools() {
+	cout << " >>> Welcome to Admin tools <<<\n";
+	return;
+}
