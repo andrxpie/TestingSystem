@@ -127,15 +127,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\COURSE WORK\COURSE WORK\Test.h" />
-    <ClInclude Include="..\COURSE WORK\COURSE WORK\Vseosvita_2_0.h" />
-    <ClInclude Include="..\COURSE WORK\COURSE WORK\_LIB.h" />
-    <ClInclude Include="std.h" />
+    <ClInclude Include="Admin.h" />
+    <ClInclude Include="Exceptions.h" />
+    <ClInclude Include="Guest.h" />
+    <ClInclude Include="LIB.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\COURSE WORK\COURSE WORK\COURSE WORK.cpp" />
-    <ClCompile Include="..\COURSE WORK\COURSE WORK\Header.cpp" />
-    <ClCompile Include="..\COURSE WORK\COURSE WORK\Vseosvita_2_0.cpp" />
+    <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="ConsoleApplication41.cpp" />
+    <ClCompile Include="Guest.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

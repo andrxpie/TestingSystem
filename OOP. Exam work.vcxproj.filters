@@ -15,16 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="std.h">
+    <ClInclude Include="Guest.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\COURSE WORK\COURSE WORK\Vseosvita_2_0.h">
+    <ClInclude Include="LIB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\COURSE WORK\COURSE WORK\Test.h">
+    <ClInclude Include="Admin.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\COURSE WORK\COURSE WORK\_LIB.h">
+    <ClInclude Include="Exceptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,13 +32,13 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\COURSE WORK\COURSE WORK\Vseosvita_2_0.cpp">
+    <ClCompile Include="Admin.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\COURSE WORK\COURSE WORK\Header.cpp">
+    <ClCompile Include="Guest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\COURSE WORK\COURSE WORK\COURSE WORK.cpp">
+    <ClCompile Include="ConsoleApplication41.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
