@@ -5,6 +5,15 @@ bool Admin::checkFirstSymbol(const str& login) const { if (login.find_first_of("
 bool Admin::checkTrueLogin(str& login) const { if (checkTrueSize(login, 3, 16) == true and checkFirstSymbol(login) == true) return true; else return false; }
 bool Admin::getIsAdmin() const { return isAdmin; }
 
+bool Admin::checkLogin(const str& login) const {
+	ifstream checkL("Admin.txt");
+	string tmp;
+	checkL >> tmp;
+	cout << " tmp: " << tmp << "\n";
+	checkL.close();
+	return true;
+}
+
 void Admin::registerAdmin() {
 	cout << " login: "; str login; cin >> login;
 	while (checkTrueLogin(login) == false) {
@@ -24,9 +33,11 @@ void Admin::registerAdmin() {
 	saveLPToFile(hashLogin, hashPassword);
 }
 
-void Admin::saveLPToFile(const str& login, const str& password) const { ofstream fileIt("Admin.txt"); fileIt << loginAdm << "\n"; fileIt << passwordAdm << "\n"; fileIt.close(); }
+void Admin::loginAdmin() {
+	cout << " login: "; str login; cin >> login;
+	while (checkLogin(login) == false) {
+		cerr << " incorrect login: not found, re-enter: "; cin >> login;
+	}
+}
 
-/*ifstream bcd("Admin.txt");
-string loginEB, passwordEB, tmp;
-if (!bcd.is_open())	RegistrAd();
-else { cin >> loginEB; bcd >> tmp; }*/
+void Admin::saveLPToFile(const str& login, const str& password) const { ofstream fileIt("Admin.txt"); fileIt << loginAdm << "\n"; fileIt << passwordAdm; fileIt.close(); }

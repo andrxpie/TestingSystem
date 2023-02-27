@@ -4,7 +4,7 @@
 int main() {
 	system("color 09");
 
-	int user, singUp; Admin admin; Guest guest;
+	int user, singUp, logIn; Admin admin; Guest guest;
 	do {
 		cout << " >>> Menu <<<\n";
 		cout << " 1. Sing Up\n 2. Log In\n 3. Exit\n";
@@ -16,8 +16,7 @@ int main() {
 				cout << " >>> Chose person <<<\n";
 				cout << " 1. Admin\t2. Guest\n";
 				cout << " ?: "; cin >> singUp;
-			}
-			else singUp = 2;
+			} else singUp = 2;
 			switch (singUp) {
 			case 1:
 				system("cls");
@@ -28,6 +27,24 @@ int main() {
 				break;
 			default:
 				cerr << " error: wrong option, re-enter opt: "; cin >> singUp;
+				break;
+			} break;
+		case 2:
+			system("cls");
+			if (admin.getIsAdmin() == false) {
+				cout << " >>> Chose person <<<\n";
+				cout << " 1. Admin\t2. Guest\n";
+				cout << " ?: "; cin >> logIn;
+			} else logIn = 2;
+			switch (logIn) {
+			case 1:
+				admin.loginAdmin();
+				break;
+			case 2:
+				//guest.loginGuest();
+				break;
+			default:
+				cerr << " error: wrong option, re-enter opt: "; cin >> logIn;
 				break;
 			} break;
 		case 3:

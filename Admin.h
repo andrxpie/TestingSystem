@@ -7,8 +7,10 @@ public:
 	bool checkFirstSymbol(const str& login) const;
 	bool checkTrueLogin(str& login) const;
 	bool getIsAdmin() const;
+	bool checkLogin(const str& login) const;
 
 	void registerAdmin();
+	void loginAdmin();
 	void saveLPToFile(const str& login, const str& password) const;
 private:
 	string loginAdm, passwordAdm;
