@@ -5,14 +5,14 @@ bool Admin::checkFirstSymbol(const str& login) const { if (login.find_first_of("
 bool Admin::checkTrueLogin(str& login) const { if (checkTrueSize(login, 3, 16) == true and checkFirstSymbol(login) == true) return true; else return false; }
 bool Admin::getIsAdmin() const { return isAdmin; }
 
-bool Admin::checkLogin(const str& login) const {
+bool Admin::checkLogin(const str& login) {
 	ifstream checkL("Admin.txt"); string tmp; checkL >> tmp; checkL.close();
-	if (login == tmp) return true; return false;
+	if (login == uncodeWord(tmp)) return true; return false;
 }
 
-bool Admin::checkPassword(const str& password) const {
+bool Admin::checkPassword(const str& password) {
 	ifstream checkP("Admin.txt"); string tmp; checkP >> tmp >> tmp; checkP.close();
-	if (password == tmp) return true; return false;
+	if (password == uncodeWord(tmp)) return true; return false;
 }
 
 void Admin::registerAdmin() {
@@ -30,8 +30,23 @@ void Admin::registerAdmin() {
 	cout << " password: " << passwordAdm << "\n *save it somewhere\n\n";
 	isAdmin = true;
 
-	str hashLogin, hashPassword;
-	saveLPToFile(hashLogin, hashPassword);
+	saveLPToFile(codeWord(loginAdm), codeWord(passwordAdm));
+}
+
+str Admin::codeWord(str& word) {
+	for (int i = 0; i < word.size(); i++) {
+		if (word[i] >= char(65) and word[i] <= char(90)) word[i] = char(word[i] + 2);
+		else if (word[i] >= char(97) and word[i] <= char(111)) word[i] = char(word[i] - 64);
+		else if (word[i] >= char(112) and word[i] <= char(122)) word[i] = char(word[i] + 2);
+	} return word;
+}
+
+str Admin::uncodeWord(str& word) {
+	for (int i = 0; i < word.size(); i++) {
+		if (word[i] >= char(67) and word[i] <= char(92)) word[i] = char(word[i] - 2);
+		else if (word[i] >= char(33) and word[i] <= char(47)) word[i] = char(word[i] + 64);
+		else if (word[i] >= char(114) and word[i] <= char(124)) word[i] = char(word[i] - 2);
+	} return word;
 }
 
 void Admin::loginAdmin() {
@@ -41,7 +56,7 @@ void Admin::loginAdmin() {
 	system("cls");
 	cout << " password: "; str password; cin >> password;
 	for (size_t i = 0; i < 3; i++) {
-		if (checkPassword(password) == false) { system("cls"); cerr << " incorrect password: not match, re-enter (" << i + 1 << " tryes left): " ; cin >> password; }
+		if (checkPassword(password) == false) { system("cls"); cerr << " incorrect password: not match, re-enter (" << 3 - i << " tryes left): "; cin >> password; }
 		else { adminTools(); break; }
 	}
 }
@@ -64,6 +79,7 @@ void Admin::adminTools() {
 		//editTest();
 		break;
 	case 4:
+		system("cls");
 		return;
 	default:
 		cerr << " error: wrong option, re-enter opt: "; cin >> adminChoise;
