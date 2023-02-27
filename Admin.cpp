@@ -49,6 +49,24 @@ void Admin::loginAdmin() {
 void Admin::saveLPToFile(const str& login, const str& password) const { ofstream fileIt("Admin.txt"); fileIt << loginAdm << "\n"; fileIt << passwordAdm; fileIt.close(); }
 
 void Admin::adminTools() {
+	system("cls");
 	cout << " >>> Welcome to Admin tools <<<\n";
-	return;
+	cout << " 1. Edit users\n 2. Show statistic\n 3. Edit tests\n 4. Exit\n";
+	cout << " ?: "; int adminChoise; cin >> adminChoise;
+	switch (adminChoise) {
+	case 1:
+		//editUser();
+		break;
+	case 2:
+		//showStat();
+		break;
+	case 3:
+		//editTest();
+		break;
+	case 4:
+		return;
+	default:
+		cerr << " error: wrong option, re-enter opt: "; cin >> adminChoise;
+		break;
+	}
 }
