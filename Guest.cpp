@@ -187,7 +187,7 @@ void Guest::load_user_data()
 	load << street << endl;
 }
 
-void Guest::fill_register()
+void Guest::registerGuest()
 {
 	cout << "\t>>>>>>>>>> Welcome to Vseosvita 2.0 <<<<<<<<<<" << endl;
 	cout << "\tLet`s make an account for you" << endl;

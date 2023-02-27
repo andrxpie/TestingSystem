@@ -2,26 +2,34 @@
 #include "Admin.h"
 
 int main() {
+	system("color 09");
+
 	int user, singUp; Admin admin; Guest guest;
 	do {
 		cout << " >>> Menu <<<\n";
-		cout << " 1. Sing Up\t2.Log In\n 3. Exit";
+		cout << " 1. Sing Up\n 2. Log In\n 3. Exit\n";
 		cout << " ?: "; cin >> user;
 		switch (user) {
 		case 1:
 			system("cls");
-			cout << " >>> Chose person <<<\n";
-			cout << " 1. Admin\t2. Guest\n";
-			cout << " ?: "; cin >> singUp;
-			switch (singUp){
-			case 2:
-				guest.fill_register();
-				break;
+			if (admin.getIsAdmin() == false) {
+				cout << " >>> Chose person <<<\n";
+				cout << " 1. Admin\t2. Guest\n";
+				cout << " ?: "; cin >> singUp;
+			}
+			else singUp = 2;
+			switch (singUp) {
 			case 1:
 				system("cls");
 				admin.registerAdmin();
 				break;
-			}
+			case 2:
+				guest.registerGuest();
+				break;
+			default:
+				cerr << " error: wrong option, re-enter opt: "; cin >> singUp;
+				break;
+			} break;
 		case 3:
 			cout << "\n >>> Bye <<<\n";
 			return 0;

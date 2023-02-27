@@ -1,8 +1,9 @@
 #include "Admin.h"
 
-bool Admin::checkTrueSize(const str& login, int left, int right) { if (login.size() >= left and login.size() <= right) return true; else return false; }
-bool Admin::checkFirstSymbol(const str& login) { if (login.find_first_of("0123456789") != -1) return false; else return true; }
-bool Admin::checkTrueLogin(str& login) { if (checkTrueSize(login, 3, 16) == true and checkFirstSymbol(login) == true) return true;	else return false; }
+bool Admin::checkTrueSize(const str& login, int left, int right) const { if (login.size() >= left and login.size() <= right) return true; else return false; }
+bool Admin::checkFirstSymbol(const str& login) const { if (login.find_first_of("0123456789") != -1) return false; else return true; }
+bool Admin::checkTrueLogin(str& login) const { if (checkTrueSize(login, 3, 16) == true and checkFirstSymbol(login) == true) return true; else return false; }
+bool Admin::getIsAdmin() const { return isAdmin; }
 
 void Admin::registerAdmin() {
 	cout << " login: "; str login; cin >> login;
@@ -16,17 +17,14 @@ void Admin::registerAdmin() {
 	
 	system("cls");
 	cout << " login: " << loginAdm << "\n";
-	cout << " password: " << passwordAdm << "\n";
+	cout << " password: " << passwordAdm << "\n *save it somewhere\n\n";
+	isAdmin = true;
 
-	saveLPToFile();
+	string hashLogin, hashPassword;
+	saveLPToFile(hashLogin, hashPassword);
 }
 
-void Admin::saveLPToFile() {
-	ofstream fileIt("Admin.txt");
-	fileIt << loginAdm << "\n";
-	fileIt << passwordAdm << "\n";
-	fileIt.close();
-}
+void Admin::saveLPToFile(const str& login, const str& password) const { ofstream fileIt("Admin.txt"); fileIt << loginAdm << "\n"; fileIt << passwordAdm << "\n"; fileIt.close(); }
 
 /*ifstream bcd("Admin.txt");
 string loginEB, passwordEB, tmp;

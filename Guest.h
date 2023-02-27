@@ -39,5 +39,5 @@ class Guest : public Home_Address, Phone, Bio
 protected:
 	void load_user_data();
 public:
-	void fill_register();
+	void registerGuest();
 };
