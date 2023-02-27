@@ -14,7 +14,7 @@ int main() {
 			system("cls");
 			if (admin.getIsAdmin() == false) {
 				cout << " >>> Chose person <<<\n";
-				cout << " 1. Admin\t2. Guest\n";
+				cout << " 1. Admin\n 2. Guest\n 3. Exit\n";
 				cout << " ?: "; cin >> singUp;
 			} else singUp = 2;
 			switch (singUp) {
@@ -25,17 +25,18 @@ int main() {
 			case 2:
 				guest.registerGuest();
 				break;
+			case 3:
+				system("cls");
+				break;
 			default:
 				cerr << " error: wrong option, re-enter opt: "; cin >> singUp;
 				break;
 			} break;
 		case 2:
 			system("cls");
-			if (admin.getIsAdmin() == false) {
-				cout << " >>> Chose person <<<\n";
-				cout << " 1. Admin\t2. Guest\n";
-				cout << " ?: "; cin >> logIn;
-			} else logIn = 2;
+			cout << " >>> Chose person <<<\n";
+			cout << " 1. Admin\t2. Guest\n";
+			cout << " ?: "; cin >> logIn;
 			switch (logIn) {
 			case 1:
 				system("cls");
