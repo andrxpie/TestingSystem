@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Admin.cpp" />
+    <ClCompile Include="FileName.cpp" />
     <ClCompile Include="Guest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Test.cpp" />
