@@ -118,7 +118,7 @@ void Admin::adminTools() {
 		//showStat();
 		break;
 	case 3:
-		//editTest();
+		//EditQuestion();
 		break;
 	case 4:
 		system("cls");

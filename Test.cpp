@@ -1,7 +1,5 @@
 #include "Test.h"
 
-
-
 void Test::EditQuestion(Questions& a)
 {
 	str tmp;
@@ -97,12 +95,8 @@ void Test::upload_data()
 
 void Test::print_question() const
 {
-	for (auto& i : test)
-	{
-		cout << " >>> " << i.question << endl;
-		for (auto& k : i.answers)
-		{
-			cout << k << endl;
-		}
+	for (auto& i : test) {
+		cout << " >>> " << i.question << " <<<\n";
+		for (auto& k : i.answers) cout << k << "\n";
 	}
 }

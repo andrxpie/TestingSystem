@@ -3,7 +3,7 @@
 #include "Guest.h"
 #include "Test.h"
 
-class Admin {
+class Admin: public Test {
 public:
 	bool checkTrueSize(const str& login, int left, int right) const;
 	bool checkFirstSymbol(const str& login) const;
