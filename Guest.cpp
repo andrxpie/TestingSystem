@@ -283,10 +283,12 @@ void Guest::guestTools() {
 }
 
 void Guest::doTest() {
-	cout << " >>> Themes <<<\n";
-	for (size_t i = 0; i < themes; i++) {
+	if (themes.size() == 0) { system("cls"); cout << " >>> No themes found <<<\n"; return; }
 
-	}
+	system("cls");
+	cout << " >>> Themes <<<\n";
+	for (size_t i = 0; i < themes.size(); i++) cout << " " << i + 1 << ": " << themes[i] << "\n";
+
 }
 
 str Guest::getLogin() const { return login; }
