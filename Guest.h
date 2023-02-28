@@ -33,8 +33,7 @@ protected:
 
 };
 
-class Guest : public Home_Address, Phone, Bio
-{
+class Guest : public Home_Address, Phone, Bio {
 	string login, password;
 	vector<int> marks;
 protected:
@@ -42,7 +41,12 @@ protected:
 	str uncodestr(str& _word);
 	void upload_user_data();
 public:
+	bool checkLogin(const str& login);
+	bool checkPassword(const str& password);
+
 	void load_user_data();
 	void registerGuest();
+	void loginGuest();
+	void guestTools();
 	str getLogin() const;
 };

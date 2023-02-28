@@ -1,7 +1,6 @@
 #include "Guest.h"
 #include "LIB.h"
 
-
 void Phone::fill_phone()
 {
 	string tmp;
@@ -32,8 +31,6 @@ void Phone::set_number_phone(const string& num)
 	}
 	this->phone = num;
 }
-
-
 
 void Bio::set_name(string name)
 {
@@ -166,7 +163,6 @@ void Bio::fill_data()
 	}
 }
 
-
 void Home_Address::set_street(string street)
 {
 	if (!isupper(street[0]))
@@ -179,7 +175,6 @@ void Home_Address::fill_address()
 	cout << "\t>>>>>> Now, enter your home address... <<<<<<" << endl;
 	getline(cin, street);
 }
-
 
 str Guest::codestr(str& _word)
 {
@@ -196,28 +191,17 @@ str Guest::codestr(str& _word)
 	return _word;
 }
 
-str Guest::uncodestr(str& _word)
-{
-	for (int i = 0; i < _word.size(); i++)
-	{
-		if (_word[i] >= char(67) and _word[i] <= char(92))
-			_word[i] = char(_word[i] - 2);
-		else if (_word[i] >= char(33) and _word[i] <= char(47))
-			_word[i] = char(_word[i] + 64);
-		else if (_word[i] >= char(114) and _word[i] <= char(124))
-			_word[i] = char(_word[i] - 2);
-	}
-
-	return _word;
+str Guest::uncodestr(str& _word) {
+	for (int i = 0; i < _word.size(); i++) {
+		if (_word[i] >= char(67) and _word[i] <= char(92)) _word[i] = char(_word[i] - 2);
+		else if (_word[i] >= char(33) and _word[i] <= char(47)) _word[i] = char(_word[i] + 64);
+		else if (_word[i] >= char(114) and _word[i] <= char(124)) _word[i] = char(_word[i] - 2);
+	} return _word;
 }
 
-
-void Guest::load_user_data()
-{
-
+void Guest::load_user_data() {
 	ofstream load("Users.txt", ios::app);
-	if (load.is_open())
-	{
+	if (load.is_open()) {
 		load << codestr(login) << endl;
 		load << codestr(password) << endl;
 		load << _name << endl;
@@ -225,18 +209,26 @@ void Guest::load_user_data()
 		load << _last_name << endl;
 		load << phone << endl;
 		load << street << endl;
-	}
-	load.close();
+	} load.close();
 }
 
-void Guest::upload_user_data()
-{
+void Guest::upload_user_data() {
 	string a = "Users.txt";
 	ifstream upload(a);
+	upload.close();
 }
 
-void Guest::registerGuest()
-{
+bool Guest::checkLogin(const str& login) {
+	ifstream checkL("Admin.txt"); string tmp; checkL >> tmp; checkL.close();
+	if (login == uncodestr(tmp)) return true; return false;
+}
+
+bool Admin::checkPassword(const str& password) {
+	ifstream checkP("Guests.txt"); string tmp; checkP >> tmp >> tmp; checkP.close();
+	if (password == uncodeSTRING(tmp)) return true; return false;
+}
+
+void Guest::registerGuest() {
 	cout << "\t>>>>>>>>>> Welcome to Vseosvita 2.0 <<<<<<<<<<" << endl;
 	cout << "\tLet`s make an account for you" << endl;
 
@@ -251,7 +243,43 @@ void Guest::registerGuest()
 	fill_phone();
 	cout << endl;
 	fill_address();
+}
 
+void Guest::loginGuest(){
+	cout << " login: "; str login; cin >> login;
+	while (checkLogin(login) == false) { system("cls"); cerr << " incorrect login: not found, re-enter: "; cin >> login; }
+
+	system("cls");
+	cout << " password: "; str password; cin >> password;
+	for (size_t i = 0; i < 6; i++) {
+		if (checkPassword(password) == false) { system("cls"); cerr << " incorrect password: not match, re-enter (" << 6 - i << " tries left): "; cin >> password; }
+		else { guestTools(); break; }
+	}
+}
+
+void Guest::guestTools() {
+	cout << " >>> Guest tools <<<\n";
+	cout << " 1. Do test\n 2. See results\n 3. See progress\n 4. Log Out\n";
+	cout << " ?: "; int guestChoise; cin >> guestChoise;
+	switch (guestChoise) {
+	case 1:
+		//doTest();
+		break;
+	case 2:
+		//results();
+		break;
+	case 3:
+		//progress();
+		break;
+	case 4:
+		return;
+	default:
+		system("cls");
+		cout << " >>> Guest tools <<<\n";
+		cout << " 1. Do test\n 2. See results\n 3. See progress\n";
+		cerr << " error: wrong option, re-enter opt: "; cin >> guestChoise;
+		break;
+	}
 }
 
 str Guest::getLogin() const { return login; }
