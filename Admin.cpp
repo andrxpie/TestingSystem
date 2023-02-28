@@ -78,8 +78,8 @@ void Admin::delGuest() {
 	if (guests.size() == 0) { system("cls"); cout << " >>> No guests founded <<<\n"; return; }
 
 	system("cls");
-	cout << " >>> Guests <<<\n"; int i = 0;
-	for (i; i < guests.size(); i++) { cout << " " << i + 1 << "# guest: " << guests[i].getLogin() << "\n"; }
+	cout << " >>> Guests <<<\n";
+	for (int i = 0; i < guests.size(); i++) { cout << " " << i + 1 << "# guest: " << guests[i].getLogin() << "\n"; }
 	cout << " ?: "; int guestPos; cin >> guestPos;
 	guests.erase(guests.begin() + guestPos - 1);
 }
