@@ -7,12 +7,12 @@ bool Admin::getIsAdmin() const { return isAdmin; }
 
 bool Admin::checkLogin(const str& login) {
 	ifstream checkL("Admin.txt"); string tmp; checkL >> tmp; checkL.close();
-	if (login == uncodeSTRING(tmp)) return true; return false;
+	if (login == uncodeStr(tmp)) return true; return false;
 }
 
 bool Admin::checkPassword(const str& password) {
 	ifstream checkP("Admin.txt"); string tmp; checkP >> tmp >> tmp; checkP.close();
-	if (password == uncodeSTRING(tmp)) return true; return false;
+	if (password == uncodeStr(tmp)) return true; return false;
 }
 
 void Admin::registerAdmin() {
@@ -30,10 +30,10 @@ void Admin::registerAdmin() {
 	cout << " password: " << passwordAdm << "\n *save it somewhere\n\n";
 	isAdmin = true;
 
-	saveLPToFile(codeSTRING(loginAdm), codeSTRING(passwordAdm));
+	saveLPToFile(codeStr(loginAdm), codeStr(passwordAdm));
 }
 
-str Admin::codeSTRING(str& word) {
+str Admin::codeStr(str& word) {
 	for (int i = 0; i < word.size(); i++) {
 		if (word[i] >= char(65) and word[i] <= char(90)) word[i] = char(word[i] + 2);
 		else if (word[i] >= char(97) and word[i] <= char(111)) word[i] = char(word[i] - 64);
@@ -41,7 +41,7 @@ str Admin::codeSTRING(str& word) {
 	} return word;
 }
 
-str Admin::uncodeSTRING(str& word) {
+str Admin::uncodeStr(str& word) {
 	for (int i = 0; i < word.size(); i++) {
 		if (word[i] >= char(67) and word[i] <= char(92)) word[i] = char(word[i] - 2);
 		else if (word[i] >= char(33) and word[i] <= char(47)) word[i] = char(word[i] + 64);

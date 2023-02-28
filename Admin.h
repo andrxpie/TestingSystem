@@ -13,8 +13,8 @@ public:
 	bool checkPassword(const str& password);
 
 	void registerAdmin();
-	str codeSTRING(str& word);
-	str uncodeSTRING(str& word);
+	str codeStr(str& word);
+	str uncodeStr(str& word);
 	void loginAdmin();
 	void saveLPToFile(const str& login, const str& password) const;
 

@@ -225,7 +225,7 @@ bool Guest::checkLogin(const str& login) {
 
 bool Admin::checkPassword(const str& password) {
 	ifstream checkP("Guests.txt"); string tmp; checkP >> tmp >> tmp; checkP.close();
-	if (password == uncodeSTRING(tmp)) return true; return false;
+	if (password == uncodeStr(tmp)) return true; return false;
 }
 
 void Guest::registerGuest() {
@@ -279,6 +279,13 @@ void Guest::guestTools() {
 		cout << " 1. Do test\n 2. See results\n 3. See progress\n";
 		cerr << " error: wrong option, re-enter opt: "; cin >> guestChoise;
 		break;
+	}
+}
+
+void Guest::doTest() {
+	cout << " >>> Themes <<<\n";
+	for (size_t i = 0; i < themes; i++) {
+
 	}
 }
 

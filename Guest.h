@@ -36,6 +36,7 @@ protected:
 class Guest : public Home_Address, Phone, Bio {
 	string login, password;
 	vector<int> marks;
+	vector<string> themes;
 protected:
 	str codestr(str& _word);
 	str uncodestr(str& _word);
@@ -48,5 +49,8 @@ public:
 	void registerGuest();
 	void loginGuest();
 	void guestTools();
+
+	void doTest();
+
 	str getLogin() const;
 };
