@@ -1,6 +1,7 @@
 #pragma once
 #include "LIB.h"
 #include "Exceptions.h"
+#include "Admin.h"
 class Bio
 {
 protected:
@@ -27,7 +28,6 @@ class Home_Address
 {
 protected:
 	string street;
-	int number;
 	void set_street(string street);
 	void fill_address();
 
@@ -36,8 +36,12 @@ protected:
 class Guest : public Home_Address, Phone, Bio
 {
 	string login, password;
+	vector<int> marks;
 protected:
-	void load_user_data();
+	str codestr(str& _word);
+	str uncodestr(str& _word);
+	void upload_user_data();
 public:
+	void load_user_data();
 	void registerGuest();
 };

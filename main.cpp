@@ -13,7 +13,7 @@ int main() {
 		case 1:
 			system("cls");
 			if (admin.getIsAdmin() == false) {
-				cout << " >>> Chose person <<<\n";
+				cout << " >>> Choose person <<<\n";
 				cout << " 1. Admin\n 2. Guest\n 3. Exit\n";
 				cout << " ?: "; cin >> singUp;
 			} else singUp = 2;
@@ -24,6 +24,7 @@ int main() {
 				break;
 			case 2:
 				guest.registerGuest();
+				admin.add_guest(guest);
 				break;
 			case 3:
 				system("cls");
@@ -34,8 +35,8 @@ int main() {
 			} break;
 		case 2:
 			system("cls");
-			cout << " >>> Chose person <<<\n";
-			cout << " 1. Admin\t2. Guest\n";
+			cout << " >>> Choose person <<<\n";
+			cout << " 1. Login As Admin\t2. Login As Guest\n";
 			cout << " ?: "; cin >> logIn;
 			switch (logIn) {
 			case 1:

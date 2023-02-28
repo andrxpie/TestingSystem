@@ -1,6 +1,7 @@
 #include "Guest.h"
 #include "LIB.h"
 
+
 void Phone::fill_phone()
 {
 	string tmp;
@@ -13,6 +14,7 @@ void Phone::fill_phone()
 	catch (phone_exception& a)
 	{
 		cout << "Error : " << a.get_phone_error() << endl;
+		terminate();
 	}
 }
 
@@ -68,6 +70,7 @@ void Bio::set_surname(string surname)
 	{
 		if (surname[i] == ' ')
 		{
+			surname[i] = '-';
 			if (!isupper(surname[i + 1]))
 				surname[i + 1] = char(surname[i + 1] - 32);
 		}
@@ -76,7 +79,9 @@ void Bio::set_surname(string surname)
 	for (int i = 1; i < surname.size(); i++)
 	{
 		if (char(surname[i]) < 97 and char(surname[i]) > 122)
+		{
 			throw surname_exception("The surname must contain only of latyn letters");
+		}
 	}
 
 	if (surname.size() < 2)
@@ -130,6 +135,7 @@ void Bio::fill_data()
 	catch (name_exception& a)
 	{
 		cout << "Error : " << a.get_name_error() << endl;
+		terminate();
 	}
 	cout << "\t>>>Succesfully! Now we call you " << _name << endl;
 
@@ -144,6 +150,7 @@ void Bio::fill_data()
 	catch (surname_exception& a)
 	{
 		cout << "Error : " << a.get_surname_error() << endl;
+		terminate();
 	}
 
 	cout << "Enter your last name : ";
@@ -155,6 +162,7 @@ void Bio::fill_data()
 	catch (last_name_exception& a)
 	{
 		cout << "Error : " << a.get_last_name_error() << endl;
+		terminate();
 	}
 }
 
@@ -173,18 +181,58 @@ void Home_Address::fill_address()
 }
 
 
+str Guest::codestr(str& _word)
+{
+	for (int i = 0; i < _word.size(); i++)
+	{
+		if (_word[i] >= char(65) and _word[i] <= char(90))
+			_word[i] = char(_word[i] + 2);
+		else if (_word[i] >= char(97) and _word[i] <= char(111))
+			_word[i] = char(_word[i] - 64);
+		else if (_word[i] >= char(112) and _word[i] <= char(122))
+			_word[i] = char(_word[i] + 2);
+	}
+
+	return _word;
+}
+
+str Guest::uncodestr(str& _word)
+{
+	for (int i = 0; i < _word.size(); i++)
+	{
+		if (_word[i] >= char(67) and _word[i] <= char(92))
+			_word[i] = char(_word[i] - 2);
+		else if (_word[i] >= char(33) and _word[i] <= char(47))
+			_word[i] = char(_word[i] + 64);
+		else if (_word[i] >= char(114) and _word[i] <= char(124))
+			_word[i] = char(_word[i] - 2);
+	}
+
+	return _word;
+}
+
+
 void Guest::load_user_data()
 {
-	string a = "Users.txt";
-	ofstream load(a);
 
-	load << login << endl;
-	load << password << endl;
-	load << _name << endl;
-	load << _surname << endl;
-	load << _last_name << endl;
-	load << phone << endl;
-	load << street << endl;
+	ofstream load("Users.txt", ios::app)
+	if (load.is_open())
+	{
+		load << codestr(login) << endl;
+		load << codestr(password) << endl;
+		load << _name << endl;
+		load << _surname << endl;
+		load << _last_name << endl;
+		load << phone << endl;
+		load << street << endl;
+	}
+	load.close();
+}
+
+void Guest::upload_user_data()
+{
+	string a = "Users.txt";
+	ifstream upload(a);
 }
 
 void Guest::registerGuest()
@@ -204,7 +252,6 @@ void Guest::registerGuest()
 	cout << endl;
 	fill_address();
 
-	load_user_data();
 }
 
 

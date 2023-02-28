@@ -1,5 +1,6 @@
 #include "Admin.h"
 
+
 bool Admin::checkTrueSize(const str& login, int left, int right) const { if (login.size() >= left and login.size() <= right) return true; else return false; }
 bool Admin::checkFirstSymbol(const str& login) const { if (login.find_first_of("0123456789") != -1) return false; else return true; }
 bool Admin::checkTrueLogin(str& login) const { if (checkTrueSize(login, 3, 16) == true and checkFirstSymbol(login) == true) return true; else return false; }
@@ -7,12 +8,12 @@ bool Admin::getIsAdmin() const { return isAdmin; }
 
 bool Admin::checkLogin(const str& login) {
 	ifstream checkL("Admin.txt"); string tmp; checkL >> tmp; checkL.close();
-	if (login == uncodeWord(tmp)) return true; return false;
+	if (login == uncodeSTRING(tmp)) return true; return false;
 }
 
 bool Admin::checkPassword(const str& password) {
 	ifstream checkP("Admin.txt"); string tmp; checkP >> tmp >> tmp; checkP.close();
-	if (password == uncodeWord(tmp)) return true; return false;
+	if (password == uncodeSTRING(tmp)) return true; return false;
 }
 
 void Admin::registerAdmin() {
@@ -30,10 +31,10 @@ void Admin::registerAdmin() {
 	cout << " password: " << passwordAdm << "\n *save it somewhere\n\n";
 	isAdmin = true;
 
-	saveLPToFile(codeWord(loginAdm), codeWord(passwordAdm));
+	saveLPToFile(codeSTRING(loginAdm), codeSTRING(passwordAdm));
 }
 
-str Admin::codeWord(str& word) {
+str Admin::codeSTRING(str& word) {
 	for (int i = 0; i < word.size(); i++) {
 		if (word[i] >= char(65) and word[i] <= char(90)) word[i] = char(word[i] + 2);
 		else if (word[i] >= char(97) and word[i] <= char(111)) word[i] = char(word[i] - 64);
@@ -41,7 +42,7 @@ str Admin::codeWord(str& word) {
 	} return word;
 }
 
-str Admin::uncodeWord(str& word) {
+str Admin::uncodeSTRING(str& word) {
 	for (int i = 0; i < word.size(); i++) {
 		if (word[i] >= char(67) and word[i] <= char(92)) word[i] = char(word[i] - 2);
 		else if (word[i] >= char(33) and word[i] <= char(47)) word[i] = char(word[i] + 64);
@@ -56,12 +57,18 @@ void Admin::loginAdmin() {
 	system("cls");
 	cout << " password: "; str password; cin >> password;
 	for (size_t i = 0; i < 3; i++) {
-		if (checkPassword(password) == false) { system("cls"); cerr << " incorrect password: not match, re-enter (" << 3 - i << " tryes left): "; cin >> password; }
+		if (checkPassword(password) == false) { system("cls"); cerr << " incorrect password: not match, re-enter (" << 3 - i << " tries left): "; cin >> password; }
 		else { adminTools(); break; }
 	}
 }
 
 void Admin::saveLPToFile(const str& login, const str& password) const { ofstream fileIt("Admin.txt"); fileIt << loginAdm << "\n"; fileIt << passwordAdm; fileIt.close(); }
+
+void Admin::add_guest(Guest a)
+{
+	guests.push_back(a);
+	a.load_user_data();
+}
 
 void Admin::adminTools() {
 	system("cls");
