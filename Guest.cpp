@@ -215,7 +215,7 @@ str Guest::uncodestr(str& _word)
 void Guest::load_user_data()
 {
 
-	ofstream load("Users.txt", ios::app)
+	ofstream load("Users.txt", ios::app);
 	if (load.is_open())
 	{
 		load << codestr(login) << endl;
