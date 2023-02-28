@@ -46,8 +46,8 @@ int main() {
 			case 2:
 				//guest.loginGuest();
 				break;
-			case 3:
-				return;
+			/*case 3:
+				return;*/
 			default:
 				cerr << " error: wrong option, re-enter opt: "; cin >> logIn;
 				break;

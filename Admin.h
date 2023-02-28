@@ -21,7 +21,7 @@ public:
 	void adminTools();
 	void editUsers();
 	void addGuest();
-	void addGuest(Guest a);
+	void addGuest(class Guest a);
 	void delGuest();
 
 private:
