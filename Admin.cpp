@@ -1,6 +1,5 @@
 #include "Admin.h"
 
-
 bool Admin::checkTrueSize(const str& login, int left, int right) const { if (login.size() >= left and login.size() <= right) return true; else return false; }
 bool Admin::checkFirstSymbol(const str& login) const { if (login.find_first_of("0123456789") != -1) return false; else return true; }
 bool Admin::checkTrueLogin(str& login) const { if (checkTrueSize(login, 3, 16) == true and checkFirstSymbol(login) == true) return true; else return false; }
@@ -64,20 +63,66 @@ void Admin::loginAdmin() {
 
 void Admin::saveLPToFile(const str& login, const str& password) const { ofstream fileIt("Admin.txt"); fileIt << loginAdm << "\n"; fileIt << passwordAdm; fileIt.close(); }
 
-void Admin::add_guest(Guest a)
-{
+void Admin::addGuest() {
+	Guest newGuest; newGuest.registerGuest();
+	guests.push_back(newGuest);
+	newGuest.load_user_data();
+}
+
+void Admin::addGuest(Guest a) {
 	guests.push_back(a);
 	a.load_user_data();
+}
+
+void Admin::delGuest() {
+	if (guests.size() == 0) { system("cls"); cout << " >>> No guests founded <<<\n"; return; }
+
+	system("cls");
+	cout << " >>> Guests <<<\n";
+	for (size_t i = 0; i < guests.size(); i++) { cout << " " << i + 1 << "# guest: " << guests[i].getLogin() << "\n"; }
+	cout << " ?: "; int guestPos; cin >> guestPos;
+
+	Guest delG(guests[guestPos]);
+
+	for (auto& i : guests) {
+		if (delG.getLogin() == i.getLogin()) { 
+			vector<class Guest> newGuests; 
+			for (auto& e : guests) if (e.getLogin() != delG.getLogin()) newGuests.push_back(e);
+			copy(begin(newGuests), end(newGuests), guests);
+			return;
+		}
+	}
+}
+
+void Admin::editUsers() {
+	system("cls");
+	cout << " >>> Edit users <<<\n";
+	cout << " 1. Add guest\n 2. Del guest\n 3. Modify guest\n 4. Return\n";
+	cout << " ?: "; int editChoise; cin >> editChoise;
+	switch (editChoise) {
+	case 1:
+		addGuest();
+		break;
+	case 2:
+		delGuest();
+		break;
+	default:
+		system("cls");
+		cout << " >>> Edit users <<<\n";
+		cout << " 1. Add guest\n 2. Del guest\n 3. Modify guest\n 4. Return\n";
+		cerr << " error: wrong option, re-enter opt: "; cin >> editChoise;
+		break;
+	}
 }
 
 void Admin::adminTools() {
 	system("cls");
 	cout << " >>> Welcome to Admin tools <<<\n";
-	cout << " 1. Edit users\n 2. Show statistic\n 3. Edit tests\n 4. Exit\n";
+	cout << " 1. Edit users\n 2. Show statistic\n 3. Edit tests\n 4. Log Out\n";
 	cout << " ?: "; int adminChoise; cin >> adminChoise;
 	switch (adminChoise) {
 	case 1:
-		//editUser();
+		editUsers();
 		break;
 	case 2:
 		//showStat();
@@ -87,8 +132,12 @@ void Admin::adminTools() {
 		break;
 	case 4:
 		system("cls");
+		cout << " >>> Succesfully logged out <<<\n\n";
 		return;
 	default:
+		system("cls");
+		cout << " >>> Welcome to Admin tools <<<\n";
+		cout << " 1. Edit users\n 2. Show statistic\n 3. Edit tests\n 4. Log Out\n";
 		cerr << " error: wrong option, re-enter opt: "; cin >> adminChoise;
 		break;
 	}

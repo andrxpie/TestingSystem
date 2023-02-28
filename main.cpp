@@ -24,7 +24,7 @@ int main() {
 				break;
 			case 2:
 				guest.registerGuest();
-				admin.add_guest(guest);
+				admin.addGuest(guest);
 				break;
 			case 3:
 				system("cls");
@@ -36,7 +36,7 @@ int main() {
 		case 2:
 			system("cls");
 			cout << " >>> Choose person <<<\n";
-			cout << " 1. Login As Admin\t2. Login As Guest\n";
+			cout << " 1. Login As Admin\n 2. Login As Guest\n 3. Return\n";
 			cout << " ?: "; cin >> logIn;
 			switch (logIn) {
 			case 1:
@@ -46,6 +46,8 @@ int main() {
 			case 2:
 				//guest.loginGuest();
 				break;
+			case 3:
+				return;
 			default:
 				cerr << " error: wrong option, re-enter opt: "; cin >> logIn;
 				break;

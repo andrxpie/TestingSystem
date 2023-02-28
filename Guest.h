@@ -44,4 +44,5 @@ protected:
 public:
 	void load_user_data();
 	void registerGuest();
+	str getLogin() const;
 };

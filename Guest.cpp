@@ -254,4 +254,4 @@ void Guest::registerGuest()
 
 }
 
-
+str Guest::getLogin() const { return login; }
