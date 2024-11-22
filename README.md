@@ -1,2 +1,2 @@
-# Testing-system.exam.cpp
-Exam team work | C++
+# TestingSystem
+Exam project in team | C++
